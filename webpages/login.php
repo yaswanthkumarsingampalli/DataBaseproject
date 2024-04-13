@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Database connection parameters
 $servername = "localhost:3306";
 $username = "root";
@@ -18,18 +20,30 @@ if(isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Query to check if user exists
-    $sql = "SELECT * FROM Donors WHERE email_address = '$email' AND password = '$password'";
-    $result = $conn->query($sql);
+    // Query to check if user exists in Hospitals table
+    $sql_hospital = "SELECT * FROM Hospitals WHERE email_address = '$email' AND password = '$password'";
+    $result_hospital = $conn->query($sql_hospital);
 
-    if ($result->num_rows > 0) {
-        // User found, redirect to home page or wherever you want
-        header("Location: home.html");
+    if ($result_hospital->num_rows > 0) {
+        // User found in Hospitals table, redirect to hospital home page
+        $_SESSION['email'] = $email;
+        header("Location: hospitalhome.html");
         exit();
     } else {
-        // User not found, redirect back to login page with error message
-        header("Location: Loginpage.php?error=User not found. Please sign up.");
-        exit();
+        // User not found in Hospitals table, check in Donors table
+        $sql_donor = "SELECT * FROM Donors WHERE email_address = '$email' AND password = '$password'";
+        $result_donor = $conn->query($sql_donor);
+
+        if ($result_donor->num_rows > 0) {
+            // User found in Donors table, redirect to home page
+            $_SESSION['email'] = $email;
+            header("Location: home.html");
+            exit();
+        } else {
+            // User not found in both tables, redirect back to login page with error message
+            header("Location: Loginpage.php?error=User not found. Please sign up.");
+            exit();
+        }
     }
 }
 
