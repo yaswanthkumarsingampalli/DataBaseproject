@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <form action="sign_up_process.php" method="post" onsubmit="return true;">
+      <h2>Register as:</h2>
+      <div class="radio-group">
+        <input type="radio" id="donor" name="account_type" value="donor" required onchange="showFields()">
+        <label for="donor">Donor</label>
+        <input type="radio" id="hospital" name="account_type" value="hospital" required onchange="showFields()">
+        <label for="hospital">Hospital</label>
+      </div>
+
+      <div id="hospital-fields" style="display: none;">
+        <label for="hospital_id">Hospital ID:</label>
+        <input type="text" id="hospital_id" name="hospital_id" required>
+        <label for="hospital_name">Hospital Name:</label>
+        <input type="text" id="hospital_name" name="hospital_name" required>
+        <label for="hospital_address">Hospital Address:</label>
+        <input type="text" id="hospital_address" name="hospital_address" required>
+        <label for="hospital_phone">Hospital Phone Number:</label>
+        <input type="tel" id="hospital_phone" name="hospital_phone">
+        <label for="hospital_email">Hospital Email Address:</label>
+        <input type="email" id="hospital_email" name="hospital_email" required>
+        <label for="hospital_password">Password:</label>
+        <input type="password" id="hospital_password" name="hospital_password" required>
+      </div>
+
+      <div id="donor-fields" style="display: none;">
+        <label for="blood_type">Blood Type:</label>
+        <select id="blood_type" name="blood_type">
+          <option value="">Select Blood Type</option>
+          <option value="A+">A+</option>
+          <option value="B+">B+</option>
+          <option value="AB+">AB+</option>
+          <option value="O+">O+</option>
+          <option value="A-">A-</option>
+          <option value="B-">B-</option>
+          <option value="AB-">AB-</option>
+          <option value="O-">O-</option>
+        </select>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        <label for="date_of_birth">Date of Birth:</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" required>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" required>
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <div>
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+  function showFields() {
+    var donorFields = document.getElementById("donor-fields");
+    var hospitalFields = document.getElementById("hospital-fields");
+    var donorRadio = document.getElementById("donor");
+
+    if (donorRadio.checked) {
+        donorFields.style.display = "block";
+        hospitalFields.style.display = "none";
+        
+        // Disable hospital fields to exclude them from validation
+        document.getElementById("hospital_id").disabled = true;
+        document.getElementById("hospital_name").disabled = true;
+        document.getElementById("hospital_address").disabled = true;
+        document.getElementById("hospital_phone").disabled = true;
+        document.getElementById("hospital_email").disabled = true;
+        document.getElementById("hospital_password").disabled = true;
+        
+        // Enable donor fields for validation
+        document.getElementById("first_name").disabled = false;
+        document.getElementById("last_name").disabled = false;
+        document.getElementById("date_of_birth").disabled = false;
+        document.getElementById("address").disabled = false;
+        document.getElementById("phone_number").disabled = false;
+        document.getElementById("email").disabled = false;
+        document.getElementById("password").disabled = false;
+    } else {
+        donorFields.style.display = "none";
+        hospitalFields.style.display = "block";
+        
+        // Disable donor fields to exclude them from validation
+        document.getElementById("first_name").disabled = true;
+        document.getElementById("last_name").disabled = true;
+        document.getElementById("date_of_birth").disabled = true;
+        document.getElementById("address").disabled = true;
+        document.getElementById("phone_number").disabled = true;
+        document.getElementById("email").disabled = true;
+        document.getElementById("password").disabled = true;
+        
+        // Enable hospital fields for validation
+        document.getElementById("hospital_id").disabled = false;
+        document.getElementById("hospital_name").disabled = false;
+        document.getElementById("hospital_address").disabled = false;
+        document.getElementById("hospital_phone").disabled = false;
+        document.getElementById("hospital_email").disabled = false;
+        document.getElementById("hospital_password").disabled = false;
+    }
+}
+
+
+  </script>
+</body>
+</html>
