@@ -64,10 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $abo_rh_concat = $abo_group . '+';
         $abo_rh_concat_neg = $abo_group . '-';
 
-        // Retrieve blood_type_id from BloodTypes table based on abo_group
+        // Retrieve blood_type_id from BloodTypes table based on abo_group and rh_factor
         $get_blood_type_id_sql = "SELECT blood_type_id FROM BloodTypes WHERE CONCAT(abo_group, rh_factor) = ?";
         $get_blood_type_id_stmt = $conn->prepare($get_blood_type_id_sql);
-        $get_blood_type_id_stmt->bind_param("s", $abo_rh_concat);
+        $get_blood_type_id_stmt->bind_param("s", $abo_group);
         $get_blood_type_id_stmt->execute();
         $get_blood_type_id_stmt->bind_result($blood_type_id);
 
@@ -78,8 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $get_blood_type_id_stmt->close();
 
         // Set the retrieved blood_type_id
-        $stmt->bind_param("ssssssiss", $first_name, $last_name, $date_of_birth, $address, $phone_number, $email, $password, $blood_type_id, $abo_group);
-    } elseif ($account_type === 'hospital') {
+        $stmt->bind_param("sssssssss", $first_name, $last_name, $date_of_birth, $address, $phone_number, $email, $password, $blood_type_id, $abo_group);
+        } elseif ($account_type === 'hospital') {
         // Handle hospital registration
         // Prepare SQL statement to check if email already exists
         $check_email_sql = "SELECT email_address FROM Hospitals WHERE email_address = ?";
