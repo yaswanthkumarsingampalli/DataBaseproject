@@ -28,7 +28,8 @@
         <label for="hospital_phone">Hospital Phone Number:</label>
         <input type="tel" id="hospital_phone" name="hospital_phone">
         <label for="hospital_email">Hospital Email Address:</label>
-        <input type="email" id="hospital_email" name="hospital_email" required>
+        <input type="email" id="hospital_email" name="hospital_email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z]*(?:medicalcenter\.com|hospital\.com)$">
+        <span id="hospital_email_error" style="color: red;"></span>
         <label for="hospital_password">Password:</label>
         <input type="password" id="hospital_password" name="hospital_password" required>
       </div>
@@ -94,6 +95,7 @@
         document.getElementById("phone_number").disabled = false;
         document.getElementById("email").disabled = false;
         document.getElementById("password").disabled = false;
+
     } else {
         donorFields.style.display = "none";
         hospitalFields.style.display = "block";
@@ -114,6 +116,27 @@
         document.getElementById("hospital_phone").disabled = false;
         document.getElementById("hospital_email").disabled = false;
         document.getElementById("hospital_password").disabled = false;
+
+        document.getElementById("hospital_email").addEventListener("keyup", validateEmail);
+        function validateEmail(event) {
+                var email = document.getElementById("hospital_email").value;
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]*(?:medicalcenter\.com|hospital\.com)$/;
+                var message = "";
+
+                if (!emailPattern.test(email)) {
+                  message = "Please enter a valid hospital email address (e.g., name@medicalcenter.com)";
+                }
+
+                // Display the validation message (optional)
+                document.getElementById("hospital_email_error").innerHTML = message; // Assuming you have an element with this ID to display the error message
+
+                // Prevent form submission if the email is invalid (optional)
+                if (message && event.keyCode === 13) { // Check if Enter key is pressed
+                  event.preventDefault();
+                }
+              }
+
+
     }
 }
 
