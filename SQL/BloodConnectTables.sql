@@ -18,7 +18,7 @@ CREATE TABLE Donors (
   email_address VARCHAR(100) UNIQUE,        
   password VARCHAR(255) NOT NULL,  -- Added password attribute
   blood_type_id INT,                         
-  abo_group ENUM('A', 'B', 'AB', 'O'),  
+  abo_group ENUM('A+', 'B+', 'AB+', 'O+','A-', 'B-', 'AB-', 'O-'),  
   /* FDs: donor_id -> {first_name, last_name, date_of_birth, address, phone_number, email_address, password} */    
   FOREIGN KEY (blood_type_id) REFERENCES BloodTypes(blood_type_id)  
 );
@@ -31,13 +31,14 @@ CREATE TABLE Hospitals (
   email_address VARCHAR(100) UNIQUE,
   password VARCHAR(255) NOT NULL,  -- Added password attribute
   blood_type_id INT,
-  abo_group ENUM('A', 'B', 'AB', 'O'),
   /* FDs: hospital_id -> {name, address, phone_number, email_address, password} */
   FOREIGN KEY (blood_type_id) REFERENCES BloodTypes(blood_type_id)
 );
 
 CREATE TABLE Recipients (
-  recipient_id INT PRIMARY KEY AUTO_INCREMENT,  
+  recipient_id INT PRIMARY KEY AUTO_INCREMENT, 
+  first_name VARCHAR(50) NOT NULL,          
+  last_name VARCHAR(50) NOT NULL,
   blood_type_id INT NOT NULL,                     
   medical_condition_category ENUM('Emergency', 'Surgery', 'Chronic condition') NOT NULL,  
   urgency_level INT NOT NULL,
@@ -76,14 +77,5 @@ CREATE TABLE Donations (
     ON DELETE RESTRICT  
     ON UPDATE CASCADE   
 );
-
-ALTER TABLE Donors
-ADD rh_factor ENUM('+', '-') AFTER blood_type_id;
-
-ALTER TABLE Hospitals
-ADD rh_factor ENUM('+', '-') AFTER blood_type_id;
-
-ALTER TABLE Recipients
-ADD rh_factor ENUM('+', '-') AFTER blood_type_id;
 
 
