@@ -80,44 +80,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Set the retrieved blood_type_id
         $stmt->bind_param("sssssssss", $first_name, $last_name, $date_of_birth, $address, $phone_number, $email, $password, $blood_type_id, $abo_group);
         } elseif ($account_type === 'hospital') {
-        // Handle hospital registration
-        // Prepare SQL statement to check if email already exists
-        $check_email_sql = "SELECT email_address FROM Hospitals WHERE email_address = ?";
-        $check_email_stmt = $conn->prepare($check_email_sql);
-        $check_email_stmt->bind_param("s", $email);
+            // Handle hospital registration
+            $hospital_id = $_POST['hospital_id']; // Hospital ID
+            $name = $_POST['hospital_name']; // Hospital Name for hospital registration
+            $address = $_POST['hospital_address']; // Hospital Address for hospital registration
+            $phone_number = $_POST['hospital_phone']; // Hospital Phone Number for hospital registration
+            $email = $_POST['hospital_email']; // Hospital Email for hospital registration
+            $password = $_POST['hospital_password']; // Hospital Password for hospital registration
 
-        // Set parameter values
-        $email = $_POST['hospital_email'];
+            // Prepare SQL statement to check if email already exists
+            $check_email_sql = "SELECT email_address FROM Hospitals WHERE email_address = ?";
+            $check_email_stmt = $conn->prepare($check_email_sql);
+            $check_email_stmt->bind_param("s", $email);
 
-        // Execute the statement
-        $check_email_stmt->execute();
-        $check_email_stmt->store_result();
+            // Execute the statement
+            $check_email_stmt->execute();
+            $check_email_stmt->store_result();
 
-        // Check if email already exists
-        if ($check_email_stmt->num_rows > 0) {
-            // Email already exists, redirect to signup page with error message
-            header("Location: Loginpage.php?error=Hospital Email already exists. Please use a different email.");
-            exit(); // Ensure that no other code is executed after the redirect
+       
+            // Prepare SQL statement to insert data into the Hospitals table
+            $sql = "INSERT INTO Hospitals (hospital_id, name, address, phone_number, email_address, password)
+                    VALUES (?, ?, ?, ?, ?, ?)";
+
+            // Prepare and bind parameters
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssss", $hospital_id, $name, $address, $phone_number, $email, $password);
         }
-
-        // Close statement
-        $check_email_stmt->close();
-
-        // Prepare SQL statement to insert data into the Hospitals table
-        $sql = "INSERT INTO Hospitals (name, address, phone_number, email_address, password)
-                VALUES (?, ?, ?, ?, ?)";
-
-        // Prepare and bind parameters
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssss", $name, $address, $phone_number, $email, $password);
-
-        // Set parameter values
-        $name = $_POST['hospital_name']; // Hospital Name for hospital registration
-        $address = $_POST['hospital_address']; // Hospital Address for hospital registration
-        $phone_number = $_POST['hospital_phone']; // Hospital Phone Number for hospital registration
-        $email = $_POST['hospital_email']; // Hospital Email for hospital registration
-        $password = $_POST['hospital_password']; // Hospital Password for hospital registration
-    }
 
     // Execute the statement
     if ($stmt->execute()) {
