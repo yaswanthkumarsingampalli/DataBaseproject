@@ -85,6 +85,7 @@ CREATE TABLE BloodRequests (
   contact_number VARCHAR(20) NOT NULL,
   hospital VARCHAR(100),
   blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
+  address VARCHAR(255) NOT NULL,
   additional_info TEXT,
   request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
