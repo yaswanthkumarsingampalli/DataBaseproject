@@ -24,7 +24,7 @@ CREATE TABLE Donors (
 );
 
 CREATE TABLE Hospitals (
-  hospital_id INT PRIMARY KEY AUTO_INCREMENT,
+  hospital_id INT PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
   address VARCHAR(255) NOT NULL,
   phone_number VARCHAR(20),
@@ -44,6 +44,10 @@ CREATE TABLE Recipients (
   urgency_level INT NOT NULL,
   email_address VARCHAR(100) UNIQUE,        
   password VARCHAR(255) NOT NULL,  -- Added password attribute
+  blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  additional_info TEXT,
+  request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   /* FDs: recipient_id -> {blood_type_id, medical_condition_category, urgency_level, email_address, password} */
   FOREIGN KEY (blood_type_id) REFERENCES BloodTypes(blood_type_id)
     ON DELETE RESTRICT  
@@ -78,17 +82,6 @@ CREATE TABLE Donations (
     ON UPDATE CASCADE   
 );
 
-CREATE TABLE BloodRequests (
-  request_id INT PRIMARY KEY AUTO_INCREMENT,
-  patient_name VARCHAR(100) NOT NULL,
-  blood_group ENUM('A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-') NOT NULL,
-  contact_number VARCHAR(20) NOT NULL,
-  hospital VARCHAR(100),
-  blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
-  address VARCHAR(255) NOT NULL,
-  additional_info TEXT,
-  request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 
 
