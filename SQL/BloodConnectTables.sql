@@ -78,4 +78,16 @@ CREATE TABLE Donations (
     ON UPDATE CASCADE   
 );
 
+CREATE TABLE BloodRequests (
+  request_id INT PRIMARY KEY AUTO_INCREMENT,
+  patient_name VARCHAR(100) NOT NULL,
+  blood_group ENUM('A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-') NOT NULL,
+  contact_number VARCHAR(20) NOT NULL,
+  hospital VARCHAR(100),
+  blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
+  additional_info TEXT,
+  request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 
