@@ -46,7 +46,7 @@ CREATE TABLE Recipients (
   blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
   address VARCHAR(255) NOT NULL,
   additional_info TEXT,
-  request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   /* FDs: recipient_id -> {blood_type_id, medical_condition_category, urgency_level, email_address, password} */
   FOREIGN KEY (blood_type_id) REFERENCES BloodTypes(blood_type_id)
     ON DELETE RESTRICT  
