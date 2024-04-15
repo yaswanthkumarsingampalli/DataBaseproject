@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate Blood</title>
+  <link rel="stylesheet" href="donate_blood_style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Donate Blood</h1>
+    <form action="donate_blood_process.php" method="post">
+      <label for="appointment_date">Appointment Date:</label>
+      <input type="date" id="appointment_date" name="appointment_date" required>
+
+      <label for="appointment_time">Appointment Time:</label>
+      <select id="appointment_time" name="appointment_time" required>
+        <option value="09:00">9:00 AM</option>
+        <option value="10:00">10:00 AM</option>
+        <option value="11:00">11:00 AM</option>
+        <option value="12:00">12:00 PM</option>
+        <option value="13:00">1:00 PM</option>
+        <option value="14:00">2:00 PM</option>
+        <option value="15:00">3:00 PM</option>
+        <option value="16:00">4:00 PM</option>
+      </select>
+
+      <label for="blood_drive_location">Blood Drive Location:</label>
+      <select id="blood_drive_location" name="blood_drive_location" required>
+        <option value="Wichita, KS - Red Cross Blood Donation Center">Wichita, KS - Red Cross Blood Donation Center</option>
+        <option value="Wichita, KS - Blood Donation Bus (Central & Main)">Wichita, KS - Blood Donation Bus (Central & Main)</option>
+        <option value="Wichita, KS - Blood Donation Mobile (Douglas & Market)">Wichita, KS - Blood Donation Mobile (Douglas & Market)</option>
+        <!-- Add more predefined options if needed -->
+      </select>
+
+      <label for="blood_volume">Blood Volume (ml):</label>
+      <select id="blood_volume" name="blood_volume" required>
+        <option value="250">250 ml</option>
+        <option value="350">350 ml</option>
+        <option value="450">450 ml</option>
+        <option value="550">550 ml</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <label for="hemoglobin_level">Hemoglobin Level (g/dL):</label>
+      <select id="hemoglobin_level" name="hemoglobin_level" required>
+        <option value="12">12 g/dL</option>
+        <option value="13">13 g/dL</option>
+        <option value="14">14 g/dL</option>
+        <option value="15">15 g/dL</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <button type="submit">Donate Blood</button>
+    </form>
+  </div>
+</body>
+</html>
