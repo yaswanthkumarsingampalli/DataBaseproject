@@ -43,7 +43,6 @@ CREATE TABLE Recipients (
   medical_condition_category ENUM('Emergency', 'Surgery', 'Chronic condition') NOT NULL,  
   urgency_level INT NOT NULL,
   email_address VARCHAR(100) UNIQUE,        
-  password VARCHAR(255),  -- Added password attribute
   blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
   address VARCHAR(255) NOT NULL,
   additional_info TEXT,
