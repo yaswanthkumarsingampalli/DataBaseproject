@@ -108,21 +108,21 @@
 <body>
 
 <div class="container">
-    <h2>Blood Inventory Management</h2>
+    <h2>Blood Inventory</h2>
     <div class="form-section">
-        <h3>Select ABO Group and Rh Factor</h3>
+        <h3>Select Blood Group and Rh Factor</h3>
         <form method="post">
             <label for="abo_group">Select ABO Group:</label>
             <select id="abo_group" name="abo_group">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="AB">AB</option>
-                <option value="O">O</option>
+                <option value="A" <?php if(isset($_POST['abo_group']) && $_POST['abo_group'] == 'A') echo 'selected'; ?>>A</option>
+                <option value="B" <?php if(isset($_POST['abo_group']) && $_POST['abo_group'] == 'B') echo 'selected'; ?>>B</option>
+                <option value="AB" <?php if(isset($_POST['abo_group']) && $_POST['abo_group'] == 'AB') echo 'selected'; ?>>AB</option>
+                <option value="O" <?php if(isset($_POST['abo_group']) && $_POST['abo_group'] == 'O') echo 'selected'; ?>>O</option>
             </select>
             <label for="rh_factor">Select Rh Factor:</label>
             <select id="rh_factor" name="rh_factor">
-                <option value="+">+</option>
-                <option value="-">-</option>
+                <option value="+" <?php if(isset($_POST['rh_factor']) && $_POST['rh_factor'] == '+') echo 'selected'; ?>>+</option>
+                <option value="-" <?php if(isset($_POST['rh_factor']) && $_POST['rh_factor'] == '-') echo 'selected'; ?>>-</option>
             </select><br>
             <button type="submit" name="submit">Submit</button>
         </form>
@@ -135,8 +135,9 @@
                 <th>Collected Date</th>
                 <th>Expiry Date</th>
                 <th>Storage Location</th>
-                <th>Donor First Name</th>
-                <th>Donor Last Name</th>
+                <th>Donor's First Name</th>
+                <th>Donor's Last Name</th>
+                <th>Donor's Phone Number</th>
                 <th>Blood Volume (ml)</th>
                 <th>Hemoglobin Level</th>
             </tr>
@@ -162,7 +163,7 @@
                 $rh_factor = $_POST['rh_factor'];
 
                 // Fetch blood inventory details based on selected ABO group and Rh factor
-                $sql = "SELECT bi.collected_date, bi.expiry_date, bi.storage_location, d.first_name, d.last_name, dn.blood_volume, dn.hemoglobin_level
+                $sql = "SELECT bi.collected_date, bi.expiry_date, bi.storage_location, d.first_name, d.last_name, d.phone_number, dn.blood_volume, dn.hemoglobin_level
                         FROM BloodInventory bi
                         INNER JOIN Donors d ON bi.donor_id = d.donor_id
                         INNER JOIN Donations dn ON d.donor_id = dn.donor_id
@@ -182,12 +183,13 @@
                         echo "<td>" . $row["storage_location"] . "</td>";
                         echo "<td>" . $row["first_name"] . "</td>";
                         echo "<td>" . $row["last_name"] . "</td>";
+                        echo "<td>" . $row["phone_number"] . "</td>";
                         echo "<td>" . $row["blood_volume"] . "</td>";
                         echo "<td>" . $row["hemoglobin_level"] . "</td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='7'>No blood inventory available for the selected ABO group and Rh factor.</td></tr>";
+                    echo "<tr><td colspan='8'>No blood inventory available for the selected ABO group and Rh factor.</td></tr>";
                 }
 
                 // Close the database connection
