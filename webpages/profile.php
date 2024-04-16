@@ -4,45 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    p {
-      margin: 10px 0;
-      color: #555;
-    }
-
-    a {
-      text-decoration: none;
-      color: #007bff;
-      display: inline-block;
-      margin-top: 20px;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body>
+  <div>
+    <a href="logout.php" class="logout-btn">Logout</a>
+  </div>
   <div class="container">
     <?php
     session_start();
