@@ -1,79 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-  <link rel="stylesheet" href="profile.css">
-</head>
-<body>
-  <div>
-    <a href="logout.php" class="logout-btn">Logout</a>
-  </div>
-  <div class="container">
-    <?php
-    session_start();
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('profile-background-image.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+   */
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url("profile-background-image.jpg"); /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
 
-    // Check if user is logged in
-    if (!isset($_SESSION['email'])) {
-        // Redirect to login page if not logged in
-        header("Location: Loginpage.php");
-        exit();
-    }
-
-    // Database connection parameters
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $dbname = "BloodConnect";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve user's email from session
-    $email = $_SESSION['email'];
-
-    // Check if user is a donor
-    $sql_check_donor = "SELECT * FROM Donors WHERE email_address = '$email'";
-    $result_check_donor = $conn->query($sql_check_donor);
-
-    if ($result_check_donor->num_rows > 0) {
-        // User is a donor, fetch donor details
-        $sql_donor = "SELECT * FROM Donors WHERE email_address = '$email'";
-        $result_donor = $conn->query($sql_donor);
-        $row_donor = $result_donor->fetch_assoc();
-
-        // Display donor details
-        echo "<h2>Your Profile</h2>";
-        echo "<p>Name: " . $row_donor['first_name'] . " " . $row_donor['last_name'] . "</p>";
-        echo "<p>Date of Birth: " . $row_donor['date_of_birth'] . "</p>";
-        echo "<p>Address: " . $row_donor['address'] . "</p>";
-        echo "<p>Email: " . $row_donor['email_address'] . "</p>";
-        echo "<p>Phone Number: " . $row_donor['phone_number'] . "</p>";
-        echo "<p>Blood Type: " . $row_donor['abo_group'] . "</p>";
-    } else {
-        // User is a hospital, fetch hospital details
-        $sql_hospital = "SELECT * FROM Hospitals WHERE email_address = '$email'";
-        $result_hospital = $conn->query($sql_hospital);
-        $row_hospital = $result_hospital->fetch_assoc();
-
-        // Display hospital details
-        echo "<h2>Your Profile</h2>";
-        echo "<p>Name: " . $row_hospital['name'] . "</p>";
-        echo "<p>Address: " . $row_hospital['address'] . "</p>";
-        echo "<p>Email: " . $row_hospital['email_address'] . "</p>";
-        echo "<p>Phone Number: " . $row_hospital['phone_number'] . "</p>";
-    }
-
-    // Close connection
-    $conn->close();
-    ?>
-    <a href='home.html'>Back to Home</a>
-  </div>
-</body>
-</html>
+  .container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: absolute; /* or relative */
+    top: 15%;
+    left: 40%;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #b60a0a;
+    display: inline-block;
+    margin-top: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #7b0303;
+  }
+  
+  /* Style logout button */
+  .logout-btn {
+    text-decoration: none;
+    color: #333; /* Dark gray text */
+    background-color: #ffffff; /* White background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #333; /* Dark gray border */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #333; /* Dark gray background on hover */
+    color: #ffffff; /* White text on hover */
+  }
+  
