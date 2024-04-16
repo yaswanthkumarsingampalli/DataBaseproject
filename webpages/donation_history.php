@@ -48,17 +48,28 @@ $donation_history = $result->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation History</title>
     <style>
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+        } */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("donation_history_background.jpg"); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 800px;
             margin: 50px auto;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -93,7 +104,7 @@ $donation_history = $result->fetch_all(MYSQLI_ASSOC);
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #8d0202;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
@@ -101,7 +112,7 @@ $donation_history = $result->fetch_all(MYSQLI_ASSOC);
         }
 
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #600101;
         }
     </style>
 </head>
