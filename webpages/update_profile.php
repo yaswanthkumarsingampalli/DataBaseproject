@@ -7,7 +7,13 @@
 <style>
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-image: url("update_profile_background.jpg"); /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -16,7 +22,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -47,7 +53,7 @@ select {
 
 button[type="submit"] {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #600101;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -55,23 +61,22 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #8d0202;
 }
 
 a {
     display: block;
     margin-top: 10px;
     text-decoration: none;
-    color: #333;
+    color: #600101;
 }
 
 a:hover {
-    color: #4CAF50;
+    color: #8d0202;
 }
 </style>
 </head>
 <body>
-
 <?php
 session_start();
 
@@ -81,6 +86,9 @@ if (!isset($_SESSION['email'])) {
     header("Location: Loginpage.php");
     exit();
 }
+
+// Initialize message variable
+$message = '';
 
 // Database connection parameters
 $servername = "localhost";
@@ -118,9 +126,9 @@ if ($result_check_donor->num_rows > 0) {
         // Update donor's address, phone number, and blood type
         $sql_update_donor = "UPDATE Donors SET address='$address', phone_number='$phone_number' WHERE email_address='$email'";
         if ($conn->query($sql_update_donor) === TRUE) {
-            echo "Record updated successfully";
+            $message = "Record updated successfully";
         } else {
-            echo "Error updating record: " . $conn->error;
+            $message = "Error updating record: " . $conn->error;
         }
 
         // Fetch updated donor details
@@ -151,6 +159,7 @@ if ($result_check_donor->num_rows > 0) {
     echo "</form>";
     echo "<a href='home.html'>Back to Home</a>";
     echo "<a href='logout.php'>Logout</a>";
+    echo "<p>$message</p>"; // Display message here
     echo "</div>";
 } else {
     // User is a hospital, fetch hospital details
@@ -166,9 +175,9 @@ if ($result_check_donor->num_rows > 0) {
         // Update hospital's address and phone number
         $sql_update_hospital = "UPDATE Hospitals SET address='$address', phone_number='$phone_number' WHERE email_address='$email'";
         if ($conn->query($sql_update_hospital) === TRUE) {
-            echo "Record updated successfully";
+            $message = "Record updated successfully";
         } else {
-            echo "Error updating record: " . $conn->error;
+            $message = "Error updating record: " . $conn->error;
         }
 
         // Fetch updated hospital details
@@ -189,7 +198,9 @@ if ($result_check_donor->num_rows > 0) {
     echo "</form>";
     echo "<a href='hospitalhome.html'>Back to Hospital Home</a>";
     echo "<a href='logout.php'>Logout</a>";
+    echo "<p>$message</p>"; // Display message here
     echo "</div>";
+
 }
 
 // Close connection
