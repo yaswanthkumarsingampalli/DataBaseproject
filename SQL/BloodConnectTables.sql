@@ -46,7 +46,7 @@ CREATE TABLE Recipients (
   address VARCHAR(255) NOT NULL,
   phone_number VARCHAR(20),
   additional_info TEXT,
-  abo_group ENUM('A+', 'B+', 'AB+', 'O+','A-', 'B-', 'AB-', 'O-'), 
+  blood_group ENUM('A+', 'B+', 'AB+', 'O+','A-', 'B-', 'AB-', 'O-'), 
   request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   /* FDs: recipient_id -> {blood_type_id, medical_condition_category, urgency_level, email_address, password} */
   FOREIGN KEY (blood_type_id) REFERENCES BloodTypes(blood_type_id)
