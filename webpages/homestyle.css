@@ -1,107 +1,126 @@
-/* Removed basic styles, update this file for advanced design */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scrollbar */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  background-color: #f8f8f8; /* Light gray background */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+.logout-btn {
+  text-decoration: none;
+  color: #333; /* Dark gray text */
+  background-color: #ffffff; /* White background */
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid #333; /* Dark gray border */
+}
+
+.logout-btn:hover {
+  background-color: #333; /* Dark gray background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+.hero {
+  position: relative;
+  flex: 1;
+  background-color: #e01a4f; /* Pink background */
+  color: black;
+  text-align: center;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center align content */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: zoomInOut 5s infinite alternate; /* Apply animation */
+}
+
+.hero-content h1 {
+  font-size: 4em;
+  margin: 0;
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.call-to-action {
+  background-color: #ffffff; /* White background */
+  color: #e01a4f; /* Pink text */
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: 2px solid #ffffff; /* White border */
+  text-decoration: none;
+}
+
+.call-to-action:hover {
+  background-color: #e01a4f; /* Pink background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+main {
+  flex: 2;
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center; /* Center align content */
+}
+
+.menu-item {
+  width: calc(20% - 30px); /* Adjust width */
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  transform: scale(1.03);
+}
+
+.menu-item img {
+  width: 70px; /* Adjust image width */
+  height: 70px; /* Adjust image height */
+  margin-bottom: 10px;
+}
+
+.menu-item p {
+  font-size: 1em;
+  color: #333; /* Dark gray text */
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1); /* Normal scale */
   }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+  50% {
+    transform: scale(1.1); /* Zoom in */
   }
-  
-  .hero {
-    position: relative; /* Needed for animation */
-    flex: 1; /* Takes up half of viewport height */
-    background-image: url("blood_cells_background.jpg"); /* Replace with background image */
-    background-size: cover;
-    background-position: center;
-    animation: animateHero 10s ease-in-out infinite alternate; /* Breathing animation for background */
+  100% {
+    transform: scale(1); /* Back to normal scale */
   }
-  
-  @keyframes animateHero {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  .hero-content {
-    position: absolute; /* Positioned on top of hero section */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center content within hero */
-    color: white;
-    text-align: center;
-  }
-  
-  .hero-content h1 {
-    font-size: 4em;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-    margin: 0;
-    animation: pulsate 1s ease-in-out infinite alternate; /* Pulsating animation for title */
-  }
-  
-  @keyframes pulsate {
-    0% { opacity: 1; }
-    50% { opacity: 0.8; }
-    100% { opacity: 1; }
-  }
-  
-  .hero-content p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  .call-to-action {
-    background-color: #e01a4f; /* Red call to action button */
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  }
-  
-  .call-to-action:hover {
-    background-color: #c0123f; /* Darker red on hover */
-  }
-  
-  main {
-    flex: 2; /* Takes up twice the space of hero */
-    padding: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .menu-item {
-    width: 30%; /* Each menu item takes up 30% width */
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
-    margin: 15px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    position: relative; /* Needed for hover animation */
-  }
-  
-  .menu-item:hover {
-    transform: scale(1.03); /* Slight zoom on hover */
-  }
-  
-  .menu-item img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-  }
-  
-  .menu-item p {
-    font-size: 1em;
-    color: #333;
-  }
-  
+}
