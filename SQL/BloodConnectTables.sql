@@ -45,6 +45,7 @@ CREATE TABLE Recipients (
   email_address VARCHAR(100) UNIQUE,        
   blood_donation_type ENUM('For Youself', 'For Others') NOT NULL,
   address VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(20),
   additional_info TEXT,
   request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   /* FDs: recipient_id -> {blood_type_id, medical_condition_category, urgency_level, email_address, password} */
