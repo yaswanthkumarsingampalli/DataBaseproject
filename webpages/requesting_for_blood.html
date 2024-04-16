@@ -32,22 +32,20 @@
       <form action="requesting_for_blood.php" method="POST">
         <!-- Fields for requesting blood for yourself -->
         <input type="hidden" name="blood_donation_type" value="For Yourself">
-        <label for="medical_condition_category">Medical Condition Category:</label>
-        <select id="medical_condition_category" name="medical_condition_category">
+        <label for="medical_condition_category_yourself">Medical Condition Category:</label>
+        <select id="medical_condition_category_yourself" name="medical_condition_category_yourself">
           <option value="Emergency">Emergency</option>
           <option value="Surgery">Surgery</option>
           <option value="Chronic condition">Chronic condition</option>
         </select><br><br>
-        <label for="urgency_level">Urgency Level:</label>
-        <select id="urgency_level" name="urgency_level">
+        <label for="urgency_level_yourself">Urgency Level:</label>
+        <select id="urgency_level_yourself" name="urgency_level_yourself">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select><br><br>
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required><br><br>
-        <label for="additional_info">Additional Information:</label><br>
-        <textarea id="additional_info" name="additional_info" rows="4" cols="50"></textarea><br><br>
+        <label for="additional_info_yourself">Additional Information:</label><br>
+        <textarea id="additional_info_yourself" name="additional_info_yourself" rows="4" cols="50"></textarea><br><br>
         <input type="submit" value="Submit Request">
       </form>
     </div>
@@ -72,14 +70,14 @@
           <option value="O+">O+</option>
           <option value="O-">O-</option>
         </select><br><br>
-        <label for="medical_condition_category">Medical Condition Category:</label>
-        <select id="medical_condition_category" name="medical_condition_category">
+        <label for="medical_condition_category_others">Medical Condition Category:</label>
+        <select id="medical_condition_category_others" name="medical_condition_category_others">
           <option value="Emergency">Emergency</option>
           <option value="Surgery">Surgery</option>
           <option value="Chronic condition">Chronic condition</option>
         </select><br><br>
-        <label for="urgency_level">Urgency Level:</label>
-        <select id="urgency_level" name="urgency_level">
+        <label for="urgency_level_others">Urgency Level:</label>
+        <select id="urgency_level_others" name="urgency_level_others">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -90,8 +88,8 @@
         <input type="tel" id="phone_number" name="phone_number" required><br><br>
         <label for="address">Address:</label>
         <input type="text" id="address" name="address" required><br><br>
-        <label for="additional_info">Additional Information:</label><br>
-        <textarea id="additional_info" name="additional_info" rows="4" cols="50"></textarea><br><br>
+        <label for="additional_info_others">Additional Information:</label><br>
+        <textarea id="additional_info_others" name="additional_info_others" rows="4" cols="50"></textarea><br><br>
         <input type="submit" value="Submit Request">
       </form>
     </div>
