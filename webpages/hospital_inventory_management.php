@@ -8,7 +8,13 @@
         /* Apply styles to the body */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background-image: url("hospital_inventory_background.jpg"); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
             padding: 0;
         }
@@ -17,10 +23,12 @@
         .container {
             width: 80%;
             margin: 20px auto;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            text-align: center;
         }
 
         /* Style the heading */
@@ -51,14 +59,14 @@
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #8d0202;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #600101;
         }
 
         /* Style the table */
@@ -81,7 +89,7 @@
         /* Style the 'Back to Home' button */
         .btn {
             display: inline-block;
-            background-color: #007bff;
+            background-color:  #8d0202;
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
@@ -90,7 +98,7 @@
         }
 
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #600101;
         }
 
         /* Responsive design */
@@ -198,7 +206,7 @@
             ?>
         </table>
     </div>
-    <a class="btn" href="home.html">Back to Home</a>
+    <a class="btn" href="hospitalhome.html">Back to Home</a>
 </div>
 
 </body>
