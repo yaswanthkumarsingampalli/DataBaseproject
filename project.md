@@ -12,6 +12,7 @@
 
 ### GitHub Repository: Public access
 - https://github.com/yaswanthkumarsingampalli/DataBaseproject/
+- Public access
 
 ### Team members' commits and contributions:
 - Made more than 3 commits/person until April 13, 2024. Many commits after that.
