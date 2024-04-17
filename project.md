@@ -10,7 +10,12 @@
 - Yaswanth Kumar Singampalli (https://github.com/yaswanthkumarsingampalli)
 - Dedeepya Poreddy (https://github.com/DedeepyaPoreddy)  
 
+### GitHub Repository: 
+- https://github.com/yaswanthkumarsingampalli/DataBaseproject/
+
 ### Team members' commits and contributions:
+- Made more than 3 commits/person until April 13, 2024. Many commits after that.
+- Commits include adding files, updating the codes in uploaded files (non-trivial commits), and updating the database (non-trivial commits).
 
 | Team Members               | Yaswanth Kumar Singampalli | Dedeepya                  |
 |----------------------------|-----------------------------|---------------------------|
