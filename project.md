@@ -10,7 +10,7 @@
 - Yaswanth Kumar Singampalli (https://github.com/yaswanthkumarsingampalli)
 - Dedeepya Poreddy (https://github.com/DedeepyaPoreddy)  
 
-### GitHub Repository: 
+### GitHub Repository: Public access
 - https://github.com/yaswanthkumarsingampalli/DataBaseproject/
 
 ### Team members' commits and contributions:
