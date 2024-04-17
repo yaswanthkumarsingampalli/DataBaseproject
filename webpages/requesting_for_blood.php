@@ -42,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Execute SQL statement
             if ($stmt->execute() === TRUE) {
                 $message = "Request submitted successfully";
+
+                // Execute Python script in the background
+                exec("python3 send_message_script.py"); // Replace 'background_script.py' with your actual Python script filename
             } else {
                 $message = "Error: " . $stmt->error;
             }
@@ -49,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Close statement
             $stmt->close();
         } else {
-            $message = "Donor details not found for the logged-in user.";;
+            $message = "Donor details not found for the logged-in user.";
         }
     } else if ($blood_donation_type == 'For Others') {
         // Retrieve form data for recipient
@@ -80,15 +83,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Execute SQL statement
             if ($stmt->execute() === TRUE) {
-                $message = "Your request has been submitted successfully.";;
+                $message = "Your request has been submitted successfully.";
+
+                // Execute Python script in the background
+                exec("python3 send_message_script.py"); // Replace 'background_script.py' with your actual Python script filename
             } else {
-                $message = "Error: " . $stmt->error;;
+                $message = "Error: " . $stmt->error;
             }
 
             // Close statement
             $stmt->close();
         } else {
-            $message= "Blood type not found for the specified blood group.";
+            $message = "Blood type not found for the specified blood group.";
         }
     }
 }
