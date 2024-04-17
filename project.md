@@ -1,6 +1,8 @@
 # Project Name: Blood Connect!
 
-## Team Name: Group 7
+## Team: Group 7
+
+### Team Members:
 - Yaswanth Kumar Singampalli (https://github.com/yaswanthkumarsingampalli)
 - Dedeepya Poreddy (https://github.com/DedeepyaPoreddy)
 
