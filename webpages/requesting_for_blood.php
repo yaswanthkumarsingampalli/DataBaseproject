@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Request submitted successfully";
 
                 // Execute Python script in the background
-                exec("python3 send_message_script.py"); // Replace 'background_script.py' with your actual Python script filename
+                exec("python send_message_script.py > /dev/null 2>&1 &");// Replace 'background_script.py' with your actual Python script filename
             } else {
                 $message = "Error: " . $stmt->error;
             }
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Your request has been submitted successfully.";
 
                 // Execute Python script in the background
-                exec("python3 send_message_script.py"); // Replace 'background_script.py' with your actual Python script filename
+                exec("python send_message_script.py > /dev/null 2>&1 &");// Replace 'background_script.py' with your actual Python script filename
             } else {
                 $message = "Error: " . $stmt->error;
             }
